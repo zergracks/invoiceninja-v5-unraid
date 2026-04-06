@@ -1,4 +1,4 @@
-FROM invoiceninja/invoiceninja:5
+FROM invoiceninja/invoiceninja:5.13
 USER root
 
 COPY rootfs /
@@ -11,6 +11,10 @@ RUN apk update && \
     rm -rf /var/www/app/.env && \
     sed -i -e 's/memory_limit = 128M/memory_limit = 256M/g' /usr/local/etc/php/php.ini && \
     echo "opcache.preload_user = www-data" >> /usr/local/etc/php/conf.d/invoiceninja.ini
+
+COPY robots.txt /var/www/app/public/
+
+RUN chown www-data:www-data /var/www/app/public/robots.txt
 
 EXPOSE 80
 
