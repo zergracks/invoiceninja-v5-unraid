@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-n-push:
     runs-on: ubuntu-latest
     permissions:
       contents: read
